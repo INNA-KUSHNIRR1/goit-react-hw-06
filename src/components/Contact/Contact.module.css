@@ -1,0 +1,63 @@
+.iconUser {
+  margin-right: 16px;
+}
+.iconPhone {
+  margin-right: 16px;
+}
+.iconPhone:hover {
+  fill: rgb(66, 207, 61);
+  transform: scale(1.08);
+}
+.card {
+  font-size: 18px;
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  align-items: center;
+  width: 311px;
+  height: 107px;
+  border: 1px solid rgba(140, 196, 186, 0.87);
+  border-radius: 16px;
+  padding: 12px;
+}
+
+.user {
+  max-width: 210px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  text-align: left;
+  overflow-x: auto;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  scrollbar-width: thin;
+}
+.nameUser {
+  font-size: 18px;
+}
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px;
+  min-width: 90px;
+  height: 42px;
+  border-radius: 8px;
+  text-transform: uppercase;
+  font-size: 16px;
+  box-shadow: 2px 3px 2px rgba(140, 196, 186, 0.87);
+}
+.btn:hover {
+  box-shadow: 2px 4px 8px rgba(140, 196, 186, 0.87);
+}
+
+.btn:focus {
+  border: 1px solid rgba(140, 196, 186, 0.87);
+}
+
+@media screen and (min-width: 768px) {
+  .card {
+    width: 380px;
+  }
+}

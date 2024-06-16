@@ -33,37 +33,43 @@ const ContactForm = () => {
     actions.resetForm();
   };
   return (
-    <Formik
-      initialValues={{ name: '', number: '' }}
-      onSubmit={handleSubmit}
-      validationSchema={ContactSchema}
-    >
-      <Form className={style.form}>
-        <label className={style.label} htmlFor={nameFieldId}>
-          Name
-        </label>
-        <Field
-          className={style.field}
-          type="text"
-          name="name"
-          id={nameFieldId}
-        />
-        <ErrorMessage className={style.error} name="name" component="span" />
-        <label className={style.label} htmlFor={numberFieldId}>
-          Number
-        </label>
-        <Field
-          className={style.field}
-          type="text"
-          name="number"
-          id={numberFieldId}
-        />
-        <ErrorMessage className={style.error} name="number" component="span" />
-        <button className={style.btn} type="submit">
-          Add contact
-        </button>
-      </Form>
-    </Formik>
+    <section className={style.sectionForm}>
+      <Formik
+        initialValues={{ name: '', number: '' }}
+        onSubmit={handleSubmit}
+        validationSchema={ContactSchema}
+      >
+        <Form className={style.form}>
+          <label className={style.label} htmlFor={nameFieldId}>
+            Name
+          </label>
+          <Field
+            className={style.field}
+            type="text"
+            name="name"
+            id={nameFieldId}
+          />
+          <ErrorMessage className={style.error} name="name" component="span" />
+          <label className={style.label} htmlFor={numberFieldId}>
+            Number
+          </label>
+          <Field
+            className={style.field}
+            type="text"
+            name="number"
+            id={numberFieldId}
+          />
+          <ErrorMessage
+            className={style.error}
+            name="number"
+            component="span"
+          />
+          <button className={style.btn} type="submit">
+            Add contact
+          </button>
+        </Form>
+      </Formik>
+    </section>
   );
 };
 export default ContactForm;

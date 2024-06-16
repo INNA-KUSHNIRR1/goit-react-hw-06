@@ -6,21 +6,21 @@ import { useSelector } from 'react-redux';
 const ContactList = () => {
   const contacts = useSelector(selectContacts);
   const filter = useSelector(selectNameFilter);
-  console.log(contacts);
-  console.log(filter);
   const foundContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase()),
   );
   return (
-    <ul className={style.list}>
-      {foundContacts.map(contact => {
-        return (
-          <li key={contact.id}>
-            <Contact data={contact} />
-          </li>
-        );
-      })}
-    </ul>
+    <section className={style.sectionList}>
+      <ul className={style.list}>
+        {foundContacts.map(contact => {
+          return (
+            <li key={contact.id}>
+              <Contact data={contact} />
+            </li>
+          );
+        })}
+      </ul>
+    </section>
   );
 };
 export default ContactList;

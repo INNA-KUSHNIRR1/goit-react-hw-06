@@ -1,7 +1,11 @@
+.sectionList {
+  padding: 0 10px;
+}
 .list {
   display: flex;
   flex-direction: row;
   gap: 24px;
   flex-wrap: wrap;
   justify-content: center;
+  width: 100%;
 }

@@ -1,11 +1,12 @@
 .iconUser {
   margin-right: 16px;
 }
+
 .iconPhone {
   margin-right: 16px;
 }
 .iconPhone:hover {
-  fill: rgb(66, 207, 61);
+  fill: rgb(8, 109, 75);
   transform: scale(1.08);
 }
 .card {

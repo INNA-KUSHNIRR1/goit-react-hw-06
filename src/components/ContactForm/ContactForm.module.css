@@ -41,3 +41,26 @@
   font-size: 14px;
   text-align: right;
 }
+.field {
+  background-color: #181818 !important;
+  color: grey !important;
+}
+.field:-webkit-autofill {
+  background-color: #181818 !important;
+  color: grey !important;
+}
+
+.field:-webkit-autofill:focus {
+  background-color: #181818 !important;
+  color: grey !important;
+}
+
+.field:-webkit-autofill:hover {
+  background-color: #181818 !important;
+  color: grey !important;
+}
+
+.field:-webkit-autofill:active {
+  background-color: #181818 !important;
+  color: grey !important;
+}

@@ -16,6 +16,7 @@ const SearchBox = () => {
           value={value}
           onChange={e => dispatch(changeFilter(e.target.value))}
           placeholder="search..."
+          autoFocus
         ></input>
       </div>
     </section>

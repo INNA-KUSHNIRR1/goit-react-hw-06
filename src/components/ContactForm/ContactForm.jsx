@@ -1,5 +1,5 @@
 import { Field, Form, Formik } from 'formik';
-import style from './ContatForm.module.css';
+import style from './ContactForm.module.css';
 import { useId } from 'react';
 import * as Yup from 'yup';
 import { ErrorMessage } from 'formik';
@@ -7,7 +7,6 @@ import { nanoid } from 'nanoid';
 import { useDispatch } from 'react-redux';
 import { addContact } from '../../redux/contactsSlice';
 import MaskedInput from 'react-text-mask';
-import { useRef } from 'react';
 
 const ContactSchema = Yup.object().shape({
   name: Yup.string()
@@ -22,11 +21,10 @@ const ContactSchema = Yup.object().shape({
     )
     .required('Required'),
 });
-const TextMaskCustom = ({ field, innerRef, ...props }) => (
+const TextMaskCustom = ({ field, ...props }) => (
   <MaskedInput
     {...field}
     {...props}
-    ref={innerRef}
     mask={[
       '(',
       /[0-9]/,
@@ -52,20 +50,19 @@ const ContactForm = () => {
   const nameFieldId = useId();
   const numberFieldId = useId();
   const dispatch = useDispatch();
-  const numberRef = useRef(null);
 
   const handleSubmit = (values, actions) => {
     const newContact = { id: nanoid(), ...values };
     dispatch(addContact(newContact));
     actions.resetForm();
   };
-  const handleClick = () => {
-    // При клике устанавливаем положение курсора в начало строки
-    if (numberRef.current) {
-      numberRef.current.selectionStart = 0;
-      numberRef.current.selectionEnd = 0;
-    }
-  };
+  // const handleClick = () => {
+  //   // При клике устанавливаем положение курсора в начало строки
+  //   if (numberRef.current) {
+  //     numberRef.current.selectionStart = 0;
+  //     numberRef.current.selectionEnd = 0;
+  //   }
+  // };
   return (
     <section className={style.sectionForm}>
       <Formik
@@ -93,8 +90,6 @@ const ContactForm = () => {
             name="number"
             id={numberFieldId}
             component={TextMaskCustom}
-            onClick={handleClick}
-            innerRef={numberRef}
           />
           <ErrorMessage
             className={style.error}

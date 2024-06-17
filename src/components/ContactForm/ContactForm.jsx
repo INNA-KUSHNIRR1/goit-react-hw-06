@@ -6,6 +6,7 @@ import { ErrorMessage } from 'formik';
 import { nanoid } from 'nanoid';
 import { useDispatch } from 'react-redux';
 import { addContact } from '../../redux/contactsSlice';
+import MaskedInput from 'react-text-mask';
 
 const ContactSchema = Yup.object().shape({
   name: Yup.string()
@@ -14,13 +15,37 @@ const ContactSchema = Yup.object().shape({
     .max(50, 'Too Long!')
     .required('Required'),
   number: Yup.string()
-    .matches(/^((\(\d{3}\) ?)|(\d{3}))?\d{3}\d{4}$/, {
-      message: 'Invalid phone number (XXXXXXXXXX)',
-      excludeEmptyString: false,
-    })
+    .matches(
+      /^\(\d{3}\) \d{3}-\d{4}$/,
+      'Invalid phone number (use format: (XXX) XXX-XXXX)',
+    )
     .required('Required'),
 });
-
+const TextMaskCustom = ({ field, ...props }) => (
+  <MaskedInput
+    {...field}
+    {...props}
+    mask={[
+      '(',
+      /[0-9]/,
+      /\d/,
+      /\d/,
+      ')',
+      ' ',
+      /\d/,
+      /\d/,
+      /\d/,
+      '-',
+      /\d/,
+      /\d/,
+      /\d/,
+      /\d/,
+    ]}
+    placeholder="(123) 456-7890"
+    showMask
+    className={style.field}
+  />
+);
 const ContactForm = () => {
   const nameFieldId = useId();
   const numberFieldId = useId();
@@ -52,12 +77,13 @@ const ContactForm = () => {
           <label className={style.label} htmlFor={numberFieldId}>
             Number
           </label>
+
           <Field
-            className={style.field}
-            type="text"
+            type="tel"
             name="number"
             id={numberFieldId}
-          />
+            component={TextMaskCustom}
+          ></Field>
           <ErrorMessage
             className={style.error}
             name="number"

@@ -8,8 +8,8 @@ function App() {
   return (
     <>
       <Logo />
-      <ContactForm />
       <SearchBox />
+      <ContactForm />
       <ContactList />
     </>
   );

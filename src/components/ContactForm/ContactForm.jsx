@@ -1,12 +1,13 @@
 import { Field, Form, Formik } from 'formik';
 import style from './ContactForm.module.css';
-import { useId } from 'react';
+import { useId, useState } from 'react';
 import * as Yup from 'yup';
 import { ErrorMessage } from 'formik';
 import { nanoid } from 'nanoid';
 import { useDispatch } from 'react-redux';
 import { addContact } from '../../redux/contactsSlice';
 import MaskedInput from 'react-text-mask';
+import { IoPersonAddOutline } from 'react-icons/io5';
 
 const ContactSchema = Yup.object().shape({
   name: Yup.string()
@@ -50,57 +51,71 @@ const ContactForm = () => {
   const nameFieldId = useId();
   const numberFieldId = useId();
   const dispatch = useDispatch();
+  const [isFormVisible, setIsFormVisible] = useState(true);
 
   const handleSubmit = (values, actions) => {
     const newContact = { id: nanoid(), ...values };
     dispatch(addContact(newContact));
+    setIsFormVisible(true);
     actions.resetForm();
   };
-  // const handleClick = () => {
-  //   // При клике устанавливаем положение курсора в начало строки
-  //   if (numberRef.current) {
-  //     numberRef.current.selectionStart = 0;
-  //     numberRef.current.selectionEnd = 0;
-  //   }
-  // };
+
+  const toggleFormVisibility = () => {
+    setIsFormVisible(false);
+  };
   return (
     <section className={style.sectionForm}>
-      <Formik
-        initialValues={{ name: '', number: '' }}
-        onSubmit={handleSubmit}
-        validationSchema={ContactSchema}
+      {isFormVisible && (
+        <button onClick={toggleFormVisibility} className={style.btn}>
+          <IoPersonAddOutline className={style.icon} size={20} />
+        </button>
+      )}
+      <div
+        className={`${style.formContainer} ${
+          !isFormVisible ? style.visible : ''
+        }`}
       >
-        <Form className={style.form}>
-          <label className={style.label} htmlFor={nameFieldId}>
-            Name
-          </label>
-          <Field
-            className={style.field}
-            type="text"
-            name="name"
-            id={nameFieldId}
-          />
-          <ErrorMessage className={style.error} name="name" component="span" />
-          <label className={style.label} htmlFor={numberFieldId}>
-            Number
-          </label>
+        <Formik
+          initialValues={{ name: '', number: '' }}
+          onSubmit={handleSubmit}
+          validationSchema={ContactSchema}
+        >
+          <Form className={style.form}>
+            <label className={style.label} htmlFor={nameFieldId}>
+              Name
+            </label>
+            <Field
+              className={style.field}
+              type="text"
+              name="name"
+              id={nameFieldId}
+            />
+            <ErrorMessage
+              className={style.error}
+              name="name"
+              component="span"
+            />
+            <label className={style.label} htmlFor={numberFieldId}>
+              Number
+            </label>
 
-          <Field
-            type="tel"
-            name="number"
-            id={numberFieldId}
-            component={TextMaskCustom}
-          />
-          <ErrorMessage
-            className={style.error}
-            name="number"
-            component="span"
-          />
-          <button className={style.btn} type="submit">
-            Add contact
-          </button>
-        </Form>
-      </Formik>
+            <Field
+              type="tel"
+              name="number"
+              id={numberFieldId}
+              component={TextMaskCustom}
+            />
+            <ErrorMessage
+              className={style.error}
+              name="number"
+              component="span"
+            />
+            <button className={style.btn} type="submit">
+              Add contact
+            </button>
+          </Form>
+        </Formik>
+      </div>
     </section>
   );
 };

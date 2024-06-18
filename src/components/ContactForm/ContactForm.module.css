@@ -1,13 +1,26 @@
 .sectionForm {
   padding: 0 10px;
 }
+.formContainer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+  opacity: 0;
+  /* margin-top: 20px; */
+}
+
+.formContainer.visible {
+  max-height: 280px;
+  opacity: 1;
+  transition: max-height 0.5s ease-in, opacity 0.3s ease-in;
+}
 .form {
-  margin: 0 auto;
+  margin: 10px auto;
   max-width: 380px;
   padding: 12px;
   border: 1px solid rgb(201, 98, 98);
   border-radius: 8px;
-  margin-bottom: 16px;
+  /* margin-bottom: 16px; */
   text-align: left;
 }
 .label {
@@ -28,6 +41,7 @@
   text-align: center;
   border: 1px solid #1a1a1a;
   margin-top: 20px;
+  padding: 10px;
 }
 .btn:hover {
   box-shadow: 2px 4px 8px rgb(201, 98, 98);
@@ -63,4 +77,7 @@
 .field:-webkit-autofill:active {
   background-color: #181818 !important;
   color: grey !important;
+}
+.icon {
+  stroke: rgb(201, 98, 98);
 }

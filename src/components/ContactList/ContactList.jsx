@@ -14,7 +14,7 @@ const ContactList = () => {
       <ul className={style.list}>
         {foundContacts.map(contact => {
           return (
-            <li key={contact.id}>
+            <li key={contact.id} className={style.item}>
               <Contact data={contact} />
             </li>
           );

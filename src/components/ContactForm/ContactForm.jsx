@@ -59,9 +59,16 @@ const ContactForm = ({ setIsFormVisible }) => {
     actions.resetForm();
   };
   const handleCloseForm = actions => {
-    console.log(actions);
     setIsFormVisible(true);
     actions.resetForm();
+  };
+  const handleClick = event => {
+    const input = event.target;
+    if (input.value === '' || input.value === '(___) ___-____') {
+      setTimeout(() => {
+        input.setSelectionRange(1, 1);
+      }, 0);
+    }
   };
   return (
     <section className={style.sectionForm}>
@@ -95,6 +102,7 @@ const ContactForm = ({ setIsFormVisible }) => {
               name="number"
               id={numberFieldId}
               component={TextMaskCustom}
+              onClick={handleClick}
             />
             <ErrorMessage
               className={style.error}
@@ -109,7 +117,7 @@ const ContactForm = ({ setIsFormVisible }) => {
               type="button"
               onClick={() => handleCloseForm(resetForm)}
             >
-              <BsBoxArrowUpLeft className={style.iconUp} fill="grey" />
+              <BsBoxArrowUpLeft className={style.iconUp} />
             </button>
           </Form>
         )}

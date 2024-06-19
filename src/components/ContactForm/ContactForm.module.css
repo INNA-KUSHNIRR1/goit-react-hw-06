@@ -99,7 +99,11 @@ input:focus {
   margin-right: 0;
   transition: transform 250ms ease-in-out;
 }
-.btnUp:hover {
+.btnUp:focus {
+  transform: scale(1.1);
+}
+.iconUp {
+  fill: grey;
 }
 .iconUp:hover {
   transform: scale(1.1);

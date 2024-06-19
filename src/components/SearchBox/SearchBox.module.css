@@ -1,8 +1,5 @@
 .sectionSearch {
   padding: 0 16px;
-  /* position: absolute;
-  left: ;
-  top: 160px; */
 }
 .searchBox {
   border: 1px solid rgb(201, 98, 98);
@@ -10,17 +7,22 @@
   margin: 0 auto;
   border-top-right-radius: 8px;
   text-align: left;
-  width: 380px;
+  max-width: 380px;
   padding-left: 12px;
   padding-right: 12px;
   padding-top: 12px;
+}
+.wrapperInput {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 1px;
 }
 span {
   color: rgb(201, 98, 98);
   display: block;
   margin-left: 16px;
 }
-input {
+.input {
   background-color: #181818;
   color-scheme: light dark;
   border: none;
@@ -35,7 +37,41 @@ input {
   border: 1px solid transparent;
   transition: border 250ms ease-in-out;
 }
-input:hover,
-input:focus {
+.input:hover,
+.input:focus {
   border: 1px solid rgb(201, 98, 98);
+}
+
+.formContainer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+  opacity: 0;
+}
+
+.formContainer.visible {
+  max-height: 300px;
+  opacity: 1;
+  transition: max-height 0.5s ease-in, opacity 0.3s ease-in;
+}
+.btnAdd {
+  background-color: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  min-width: 40px;
+  height: 40px;
+}
+
+.btnAdd:hover {
+  transform: scale(1.1);
+}
+
+.btnAdd:focus {
+  border: 1px solid rgb(201, 98, 98);
+}
+.icon {
+  stroke: grey;
+  transition: transform 250ms ease-in-out;
 }

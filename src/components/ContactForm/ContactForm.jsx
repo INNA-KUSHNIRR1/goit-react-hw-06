@@ -1,13 +1,13 @@
 import { Field, Form, Formik } from 'formik';
 import style from './ContactForm.module.css';
-import { useId, useState } from 'react';
+import { useId } from 'react';
 import * as Yup from 'yup';
 import { ErrorMessage } from 'formik';
 import { nanoid } from 'nanoid';
 import { useDispatch } from 'react-redux';
 import { addContact } from '../../redux/contactsSlice';
 import MaskedInput from 'react-text-mask';
-import { IoPersonAddOutline } from 'react-icons/io5';
+import { BsBoxArrowUpLeft } from 'react-icons/bs';
 
 const ContactSchema = Yup.object().shape({
   name: Yup.string()
@@ -47,11 +47,10 @@ const TextMaskCustom = ({ field, ...props }) => (
     className={style.field}
   />
 );
-const ContactForm = () => {
+const ContactForm = ({ setIsFormVisible }) => {
   const nameFieldId = useId();
   const numberFieldId = useId();
   const dispatch = useDispatch();
-  const [isFormVisible, setIsFormVisible] = useState(true);
 
   const handleSubmit = (values, actions) => {
     const newContact = { id: nanoid(), ...values };
@@ -59,27 +58,19 @@ const ContactForm = () => {
     setIsFormVisible(true);
     actions.resetForm();
   };
-
-  const toggleFormVisibility = () => {
-    setIsFormVisible(false);
+  const handleCloseForm = resetForm => {
+    console.log(resetForm);
+    setIsFormVisible(true);
+    resetForm();
   };
   return (
     <section className={style.sectionForm}>
-      {isFormVisible && (
-        <button onClick={toggleFormVisibility} className={style.btn}>
-          <IoPersonAddOutline className={style.icon} size={20} />
-        </button>
-      )}
-      <div
-        className={`${style.formContainer} ${
-          !isFormVisible ? style.visible : ''
-        }`}
+      <Formik
+        initialValues={{ name: '', number: '' }}
+        onSubmit={handleSubmit}
+        validationSchema={ContactSchema}
       >
-        <Formik
-          initialValues={{ name: '', number: '' }}
-          onSubmit={handleSubmit}
-          validationSchema={ContactSchema}
-        >
+        {resetForm => (
           <Form className={style.form}>
             <label className={style.label} htmlFor={nameFieldId}>
               Name
@@ -113,9 +104,16 @@ const ContactForm = () => {
             <button className={style.btn} type="submit">
               Add contact
             </button>
+            <button
+              className={style.btnUp}
+              type="button"
+              onClick={() => handleCloseForm(resetForm)}
+            >
+              <BsBoxArrowUpLeft className={style.iconUp} fill="grey" />
+            </button>
           </Form>
-        </Formik>
-      </div>
+        )}
+      </Formik>
     </section>
   );
 };

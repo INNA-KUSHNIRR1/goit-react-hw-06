@@ -5,6 +5,7 @@ import { deleteContact } from '../../redux/contactsSlice';
 import { useDispatch } from 'react-redux';
 import { RiDeleteBin6Fill } from 'react-icons/ri';
 import { RiEdit2Fill } from 'react-icons/ri';
+import { FaRegCircleUser } from 'react-icons/fa6';
 
 const Contact = ({ data: { id, name, number } }) => {
   const dispatch = useDispatch();
@@ -15,12 +16,16 @@ const Contact = ({ data: { id, name, number } }) => {
     <div className={style.card}>
       <div className={style.user}>
         <h2 className={style.nameUser}>
-          <FaUserAlt className={style.iconUser} size={18} />
-          {name}
+          <span className={style.spanIconUser}>
+            <FaRegCircleUser className={style.iconUser} size={30} />
+          </span>
+          <span className={style.text}>{name}</span>
         </h2>
-        <a href={`tel: +${number}`}>
-          <ImPhone className={style.iconPhone} size={18} />
-          {number}
+        <a href={`tel: +${number}`} className={style.linkPhone}>
+          <span className={style.spanIcon}>
+            <ImPhone className={style.iconPhone} size={16} />
+          </span>
+          <span className={style.text}>{number}</span>
         </a>
       </div>
       <div className={style.boxBtn}>

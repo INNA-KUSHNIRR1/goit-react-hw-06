@@ -117,7 +117,7 @@ const ContactForm = ({ setIsFormVisible }) => {
               type="button"
               onClick={() => handleCloseForm(resetForm)}
             >
-              <BsBoxArrowUpLeft className={style.iconUp} />
+              <BsBoxArrowUpLeft className={style.iconUp} size={20} />
             </button>
           </Form>
         )}

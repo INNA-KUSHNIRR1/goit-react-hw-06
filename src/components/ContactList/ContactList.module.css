@@ -1,18 +1,25 @@
 .sectionList {
   padding: 0 16px;
+  background-color: rgb(41, 39, 39);
 }
 .list {
   display: flex;
   flex-direction: row;
-  gap: 16px;
+  gap: 12px;
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
   margin: 0;
-  height: 580px;
+  height: 450px;
   overflow-y: auto;
-  margin: 16px 0;
+  padding: 16px 0;
+  /* margin: 16px 0; */
 }
 .item {
   width: 380px;
+}
+@media screen and (min-width: 768px) {
+  .list {
+    height: 500px;
+  }
 }

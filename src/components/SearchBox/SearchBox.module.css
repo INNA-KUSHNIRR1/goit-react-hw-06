@@ -11,6 +11,7 @@
   padding-left: 12px;
   padding-right: 12px;
   padding-top: 12px;
+  margin-bottom: 10px;
 }
 .wrapperInput {
   display: flex;
@@ -62,6 +63,7 @@ span {
   padding: 0;
   min-width: 40px;
   height: 40px;
+  transition: all 250ms ease-in-out;
 }
 
 .btnAdd:hover {

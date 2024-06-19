@@ -29,7 +29,7 @@ const SearchBox = () => {
             ></input>
             {isFormVisible && (
               <button onClick={toggleFormVisibility} className={style.btnAdd}>
-                <IoPersonAddOutline className={style.icon} size={18} />
+                <IoPersonAddOutline className={style.icon} size={28} />
               </button>
             )}
           </div>

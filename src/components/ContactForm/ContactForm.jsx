@@ -58,10 +58,10 @@ const ContactForm = ({ setIsFormVisible }) => {
     setIsFormVisible(true);
     actions.resetForm();
   };
-  const handleCloseForm = resetForm => {
-    console.log(resetForm);
+  const handleCloseForm = actions => {
+    console.log(actions);
     setIsFormVisible(true);
-    resetForm();
+    actions.resetForm();
   };
   return (
     <section className={style.sectionForm}>
